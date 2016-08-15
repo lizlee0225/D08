@@ -28,16 +28,48 @@ def invert_dict_old(d):
 
 
 def invert_dict_new(d):
-    pass
+    inverse = dict()
+    for key, value in d.items():
+        inverse.setdefault(value, []).append(key)
+
+    return inverse
 
 
 def print_hist_newest(d):
-    pass
+    count = 1
+    for c in sorted(d):
+        if c != count:
+            while count != c:
+                print("{}:".format(count))
+                count += 1
+        if c == count:
+            print("{}: {}".format(c, d[c]))
+            count += 1
+
 
 ###############################################################################
 # INSERT COMPLETED CODE FROM HW08_ch11_ex02a BELOW: ###########################
 ###############################################################################
+def histogram_new(s):
+    word_count = dict()
+    for word in s:
+        # Makes words lowercase to count them as same words
+        word = word.lower()
+        word_count[word] = word_count.get(word,0) + 1
+    return word_count
+    
 
+def get_pledge_list():
+    """ Opens pledge.txt and converts to a list, each item is a word in
+    the order it appears in the original file. returns the list.
+    """
+    pledge_list = []
+    with open('pledge.txt', 'r') as words:
+        for line in words: 
+            pledge_list += line.split()
+    pledge_list = [word.replace('.',"") for word in pledge_list]
+
+    return pledge_list
 
 ###############################################################################
 # INSERT COMPLETED CODE FROM HW08_ch11_ex02a BELOW: ###########################

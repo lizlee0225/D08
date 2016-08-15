@@ -10,7 +10,13 @@
 
 # Body
 def store_to_dict():
-    pass
+    new_dict = {}
+    i = 0
+    with open('words.txt','r') as words:
+    	for line in words:
+    		new_dict[line.strip()] = i
+    		i += 1
+    return new_dict	
 
 
 ###############################################################################
